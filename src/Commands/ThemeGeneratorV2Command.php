@@ -120,7 +120,7 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         );
         $this->makeFile(
             $this->containerFolder['layout'] . '/master.blade.php',
-            $this->fromTemplate('vite/views/layouts/master.blade.php')
+            $this->fromTemplate('tailwind/views/layouts/master.blade.php')
         );
         $this->writeContent(
             app_path('View/Components/AppLayout.php'),
