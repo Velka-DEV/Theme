@@ -41,6 +41,11 @@ class ThemeServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
+            'theme.create-v2',
+            fn (Container $app) => new Commands\ThemeGeneratorV2Command($app['config'], $app['files'])
+        );
+
+        $this->app->singleton(
             'theme.destroy',
             fn (Container $app) => new Commands\ThemeDestroyCommand($app['config'], $app['files'])
         );
@@ -48,6 +53,7 @@ class ThemeServiceProvider extends ServiceProvider
         $this->commands([
             'theme.create',
             'theme.destroy',
+            'theme.create-v2',
         ]);
     }
 
