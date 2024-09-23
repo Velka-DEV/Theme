@@ -77,8 +77,8 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         $this->generateViteConfig();
 
         $this->info('Append next lines to your scripts section in package.json:');
-        $this->info("\"dev:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.js --mode development\",");
-        $this->info("\"build:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.js --mode production\",");
+        $this->info("\"dev:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.ts --mode development\",");
+        $this->info("\"build:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.ts --mode production\",");
 
         $this->info('Theme created successfully.');
 
@@ -162,14 +162,16 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         // frontend sources
         $assets = $this->containerFolder['assets'];
 
-        $this->makeFile("{$assets}/images/favicon.png", $this->fromTemplate('common/favicon.png'));
+        $this->makeFile("$assets/images/.gitkeep");
+        $this->makeFile("$assets/images/favicon.png", $this->fromTemplate('common/favicon.png'));
 
-        $this->makeFile("{$assets}/styles/_variables.scss", $this->fromTemplate('tailwind/styles/_variables.scss'));
-        $this->makeFile("{$assets}/styles/app.scss", $this->fromTemplate('tailwind/styles/app.scss'));
-        $this->makeFile("{$assets}/fonts/.gitkeep");
+        $this->makeFile("$assets/styles/_variables.scss", $this->fromTemplate('tailwind/styles/_variables.scss'));
+        $this->makeFile("$assets/styles/app.scss", $this->fromTemplate('tailwind/styles/app.scss'));
 
-        $this->makeFile("{$assets}/scripts/app.ts", $this->fromTemplate('tailwind/scripts/app.ts'));
-        $this->makeFile("{$assets}/scripts/bootstrap.ts", $this->fromTemplate('tailwind/scripts/bootstrap.ts'));
+        $this->makeFile("$assets/fonts/.gitkeep");
+
+        $this->makeFile("$assets/scripts/app.ts", $this->fromTemplate('tailwind/scripts/app.ts'));
+        $this->makeFile("$assets/scripts/bootstrap.ts", $this->fromTemplate('tailwind/scripts/bootstrap.ts'));
     }
 
     protected function getThemeInfoJson(): string {
@@ -315,5 +317,11 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         return [
             new InputOption('force', null, InputOption::VALUE_NONE, 'Force create theme with same name'),
         ];
+    }
+
+    protected function generateViteConfig(): void
+    {
+        $this->makeFile('vite.config.js', $this->fromTemplate('tailwind/vite.config.ts'));
+        $this->makeFile('tailwind.config.js', $this->fromTemplate('tailwind/tailwind.config.ts'));
     }
 }
