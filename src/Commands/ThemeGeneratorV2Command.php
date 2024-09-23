@@ -138,7 +138,7 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
             'tailwindcss' => '^3.4',
             'vite' => '^5.4',
             '@tailwindcss/forms' => '^0.5',
-            '@tailwindcss/typography' => '^0.4',
+            '@tailwindcss/typography' => '^0.5',
             'typescript' => '^5.5',
             'autoprefixer' => '^10.4',
             'postcss-nesting' => '^13.0',
@@ -158,6 +158,11 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
 
         ksort($packageJson['devDependencies']);
         ksort($packageJson['dependencies']);
+
+        // Empty array should be output as object
+        if (empty($packageJson['dependencies'])) {
+            $packageJson['dependencies'] = new \stdClass();
+        }
 
         file_put_contents($packageJsonPath, json_encode($packageJson, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL);
 
