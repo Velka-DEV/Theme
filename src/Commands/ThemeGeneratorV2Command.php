@@ -81,6 +81,8 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         $this->info("\"dev:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.ts --mode development\",");
         $this->info("\"build:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.ts --mode production\",");
 
+        $this->info('Please also run `npm install` to install the required dependencies.');
+
         $this->info('Theme created successfully.');
 
         return self::SUCCESS;
@@ -138,6 +140,8 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
             '@tailwindcss/forms' => '^0.5',
             '@tailwindcss/typography' => '^0.4',
             'typescript' => '^5.5',
+            'autoprefixer' => '^10.4',
+            'postcss-nesting' => '^13.0',
         ];
 
         $packageJsonPath = base_path('package.json');
