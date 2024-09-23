@@ -176,6 +176,7 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
 
         $this->makeFile("$assets/images/.gitkeep");
         $this->makeFile("$assets/images/favicon.png", $this->fromTemplate('common/favicon.png'));
+        $this->makeFile("$assets/images/thumbnail.png", $this->fromTemplate('common/thumbnail.png'));
 
         $this->makeFile("$assets/styles/_variables.scss", $this->fromTemplate('tailwind/styles/_variables.scss'));
         $this->makeFile("$assets/styles/app.scss", $this->fromTemplate('tailwind/styles/app.scss'));
