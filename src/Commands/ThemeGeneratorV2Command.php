@@ -324,7 +324,7 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         $this->makeFile('vite.config.ts', $this->fromTemplate('tailwind/vite.config.ts', [
             '%theme_name%' => $this->getTheme()->getName(),
         ]));
-        $this->makeFile('tailwind.config.ts', $this->fromTemplate('tailwind/tailwind.config.ts', [
+        $this->makeFile('tailwind.config.js', $this->fromTemplate('tailwind/tailwind.config.js', [
             '%theme_name%' => $this->getTheme()->getName(),
         ]));
     }
