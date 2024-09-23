@@ -8,26 +8,26 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                "themes/$this->themeName/assets/sass/app.scss",
-                "themes/$this->themeName/assets/js/app.js"
+                "themes/%theme_name%/assets/styles/app.scss",
+                "themes/%theme_name%/assets/scripts/app.ts"
             ],
             refresh: [
                 ...refreshPaths,
                 'app/Livewire/**',
             ],
-            buildDirectory: 'themes/$this->themeName',
+            buildDirectory: 'themes/%theme_name%',
         }),
     ],
     resolve: {
         alias: {
-            '@': '/themes/$this->themeName/assets/js',
+            '@': '/themes/%theme_name%/assets/scripts',
         }
     },
     css: {
         postcss: {
             plugins: [
                 tailwindcss({
-                    config: path.resolve(__dirname, "tailwind.config.js"),
+                    config: path.resolve(__dirname, "tailwind.config.ts"),
                 }),
             ],
         },
