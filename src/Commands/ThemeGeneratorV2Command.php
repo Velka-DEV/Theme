@@ -78,8 +78,8 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         $this->updateNodePackagesDependencies();
 
         $this->info('Append next lines to your scripts section in package.json:');
-        $this->info("\"dev:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.ts --mode development\",");
-        $this->info("\"build:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.ts --mode production\",");
+        $this->info("\"dev:{$this->getTheme()->getName()}\": \"vite --config themes/{$this->getTheme()->getName()}/vite.config.ts --mode development\",");
+        $this->info("\"build:{$this->getTheme()->getName()}\": \"vite build --config themes/{$this->getTheme()->getName()}/vite.config.ts --mode production\",");
 
         $this->info('Please also run `npm install` to install the required dependencies.');
 

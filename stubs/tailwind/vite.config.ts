@@ -14,6 +14,7 @@ export default defineConfig({
             refresh: [
                 ...refreshPaths,
                 'app/Livewire/**',
+                'themes/%theme_name%/**',
             ],
             buildDirectory: 'themes/%theme_name%',
         }),
