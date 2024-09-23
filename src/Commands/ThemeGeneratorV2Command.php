@@ -157,6 +157,7 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         }
 
         ksort($packageJson['devDependencies']);
+        ksort($packageJson['dependencies']);
 
         file_put_contents($packageJsonPath, json_encode($packageJson, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL);
 
