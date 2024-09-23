@@ -1,8 +1,7 @@
-// @ts-nocheck
-import { defaultTheme } from "tailwindcss/defaultTheme"
-import tailwindcssForms from "@tailwindcss/forms"
+const defaultTheme = require("tailwindcss/defaultTheme");
 
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
@@ -19,6 +18,6 @@ export default {
     },
 
     plugins: [
-        tailwindcssForms
+        require("@tailwindcss/forms"),
     ],
 };
