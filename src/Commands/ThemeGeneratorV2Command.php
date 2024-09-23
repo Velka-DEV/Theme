@@ -75,6 +75,7 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         $this->generateThemeStructure();
         $this->generateViteAssets();
         $this->generateViteConfig();
+        $this->updateNodePackagesDependencies();
 
         $this->info('Append next lines to your scripts section in package.json:');
         $this->info("\"dev:{$this->themeName}\": \"vite --config themes/{$this->themeName}/vite.config.ts --mode development\",");
@@ -145,9 +146,13 @@ class ThemeGeneratorV2Command extends BaseThemeCommand implements PromptsForMiss
         $packageJsonPath = base_path('package.json');
         $packageJson = json_decode(file_get_contents($packageJsonPath), true);
 
-        // If package is present replace it, otherwise add it.
+        // If package is present replace it, otherwise add it. (should handle dev and devDependencies without duplication)
+        $packageJson['devDependencies'] = array_merge($packageJson['devDependencies'], $dependencies);
+
         foreach ($dependencies as $dependency => $version) {
-            $packageJson['devDependencies'][$dependency] = $version;
+            if (isset($packageJson['dependencies'][$dependency])) {
+                unset($packageJson['dependencies'][$dependency]);
+            }
         }
 
         ksort($packageJson['devDependencies']);
