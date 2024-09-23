@@ -1,6 +1,6 @@
 {
-    "name": "yaap/theme",
-    "description": "Theme support for Laravel with assets, theme extends etc.",
+    "name": "velka/theme",
+    "description": "Theme support for Laravel with assets, theme extends etc. (this fork add support for typescript, tailwind & meta json file theme:create-v2)",
     "license": "MIT",
     "keywords": [
         "laravel",
